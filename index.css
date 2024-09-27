@@ -64,3 +64,46 @@ h1 {
     height: 100%;
     background: #300013;
 }
+.e {
+    min-width: 200px;
+    height: 80px;
+    color: #fff;
+    padding: 5px 10px;
+    font-weight: 550;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    border-radius: 5px;
+    z-index: 0;
+    background: #e7e0cb;
+    overflow: hidden;
+    border: 2px solid #300013;
+    color: #300013;
+    margin: 30px;
+    font-size: 17px;
+    letter-spacing: 2px;
+}
+.e:hover {
+    color: #e7e0cb;
+}
+.e:hover:after {
+    width: 100%;
+}
+.e:after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    transition: all 0.3s ease;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background: #300013;
+}
+.f {
+    text-align: center;
+    color: #647e37;
+    font-size: 50px;
+}
