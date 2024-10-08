@@ -1,11 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="dinamicmap.js"></script>
+    <style>
+        #map{
+            height: 500px;
+            width: 70%;
+            border-radius: 10px;
+        }
+    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
     <title>MAPA DINAMICO</title>
 </head>
 <body>
-    
+    <h1 class="f">MAPA DINAMICO</h1>
+    <!-- Barra de busqueda de lugares -->
+     <center>
+    <input id="pac-input" type="text" placeholder="Buscar lugares" class="busqueda">
+    </center>
+    <br><br>
+    <script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3pKkj-H_bOea9hkxpuyobPiOyuWDCHeY&libraries=places&callback=initMap"></script>
+    </script>
+    <center>
+    <div id="map"></div>
+    <div><a href="index.html"><button class="e">REGRESAR</button></a></div>
+    </center>
 </body>
 </html>
