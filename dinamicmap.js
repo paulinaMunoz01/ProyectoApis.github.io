@@ -1,4 +1,4 @@
-let map;
+let map, directionsService, directionsRenderer;
 
 function initMap() {
     const myLatLng = { lat: 21.81428552567272, lng: -102.76898188728283 };
@@ -7,9 +7,9 @@ function initMap() {
         center: myLatLng,
     });
 
-    //servicio y redenrizador de direcciones (ruta)
-    direccionService = new google.maps.DirectionsService();
-    direccionRenderer = new google.maps.DirectionsRenderer();
+    //Servicio y renderizador de direcciones (ruta)
+    directionsService = new google.maps.DirectionsService();
+    directionsRenderer = new google.maps.DirectionsRenderer();
     directionsRenderer.setMap(map);
 
     const image =
@@ -61,7 +61,7 @@ function initMap() {
                     map,
                     icon: {
                         url: image, // Mantener el ícono personalizado
-                        scaledSize: new google.maps.Size(40,40),
+                        scaledSize: new google.maps.Size(40, 40),
 
                     },
                     title: place.name,
@@ -79,57 +79,61 @@ function initMap() {
                 } else {
                     bounds.extend(place.geometry.location);
                 }
-                //clacular y mostrar la ruta
-                calulateAndDisplayRoute(place.geometry.location)
+
+                //Calcular y mostrar la ruta
+                calculateAndDisplayRoute(place.geometry.location);
             });
             map.fitBounds(bounds);
+
         }
-        
     );
+
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
-            (position) => {
-                const pos = {
-                    lay: position.coords.latitude,
-                    lng: position.coords.longitude,
-                };
-                map.setCenter(pos);
-            },
-            () => {
-                console.log("Error obteniendo la ubicacion actual.");
-            }
+          (position) => {
+            const pos = {
+              lat: position.coords.latitude,
+              lat: position.coords.longitude,
+            };
+            map.setCenter(pos);
+          },
+          () => {
+            console.log("Error obtenido la ubicacion actual.");
+          }
         );
     }
 
-    // Función para calcular y mostrar la ruta desde la ubicación actual hasta el lugar seleccionado
+
+
+
+}
+
+// Función para calcular y mostrar la ruta desde la ubicación actual hasta el lugar seleccionado
 function calculateAndDisplayRoute(destination) {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
-            const origin = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude,
-            };
+  if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+          const origin = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+          };
 
-            directionsService.route(
-                {
-                    origin: origin,
-                    destination: destination,
-                    travelMode: google.maps.TravelMode.DRIVING, // Puedes cambiarlo a WALKING, BICYCLING, etc.
-                },
-                (response, status) => {
-                    if (status === "OK") {
-                        directionsRenderer.setDirections(response);
-                    } else {
-                        console.log("Direcciones fallidas: " + status);
-                    }
-                }
-            );
-        });
-    }
+          directionsService.route(
+              {
+                  origin: origin,
+                  destination: destination,
+                  travelMode: google.maps.TravelMode.DRIVING, // Puedes cambiarlo a WALKING, BICYCLING, etc.
+              },
+              (response, status) => {
+                  if (status === "OK") {
+                      directionsRenderer.setDirections(response);
+                  } else {
+                      console.log("Direcciones fallidas: " + status);
+                  }
+              }
+          );
+      });
+  }
 }
 
-
-
-
-
-}
+initMap();
+/* 21.81428552567272, -102.76898188728283 */
