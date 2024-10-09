@@ -55,7 +55,7 @@ function initMap() {
                     return;
                 }
                 //aqui agregamos los marcadores nuevos pARA CADA BUSQUEDA
-
+                
                 // Crear un marcador para cada lugar
                 const marker = new google.maps.Marker({
                     map,
@@ -84,7 +84,7 @@ function initMap() {
             });
             map.fitBounds(bounds);
         }
-
+        
     );
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
