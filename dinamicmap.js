@@ -110,30 +110,36 @@ function initMap() {
 
 // Función para calcular y mostrar la ruta desde la ubicación actual hasta el lugar seleccionado
 function calculateAndDisplayRoute(destination) {
-  if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-          const origin = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude,
-          };
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+            const origin = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
 
-          directionsService.route(
-              {
-                  origin: origin,
-                  destination: destination,
-                  travelMode: google.maps.TravelMode.DRIVING, // Puedes cambiarlo a WALKING, BICYCLING, etc.
-              },
-              (response, status) => {
-                  if (status === "OK") {
-                      directionsRenderer.setDirections(response);
-                  } else {
-                      console.log("Direcciones fallidas: " + status);
-                  }
-              }
-          );
-      });
-  }
-}
-
+            directionsService.route({
+                origin: origin,
+                destination: destination,
+                travelMode: google.maps.TravelMode.DRIVING
+            }, (response, status) => {
+                if (status === 'OK') {
+                    directionsRenderer.setDirections(response);
+                } else {
+                    // Manejar errores de manera más específica
+                    console.error('Error al calcular la ruta:', status);
+                    // Mostrar un mensaje al usuario informando del error
+                    alert('No se pudo calcular la ruta. Por favor, inténtalo más tarde.');
+                }
+            });
+        }, (error) => {
+            // Manejar errores de geolocalización
+            console.error('Error al obtener la ubicación:', error);
+            alert('No se pudo obtener tu ubicación. Asegúrate de tener habilitada la geolocalización.');
+        });
+    } else {
+        alert('Tu navegador no soporta geolocalización.');
+    }
+        }
+      
 initMap();
 /* 21.81428552567272, -102.76898188728283 */
