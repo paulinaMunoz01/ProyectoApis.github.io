@@ -2,23 +2,23 @@
 const API_URL = 'https://jsonplaceholder.typicode.com';
 
 //Obtenemos el elemento de DOM html donde arrojamos la info
-const HTMLResponse = document.querySelector('#app');
+const HTMLResponse = document.querySelector('#apptable');
 
 //Creamos el elemenot donde arrojarems la info
-const ul = document.createElement('tr');
+const ol = document.createElement('ol');
 
-fetch(`${API_URL}/users`)
+fetch(`${API_URL}/comments`)
     .then(response => response.json())
-    .then((users) => {
-        users.forEach((user) => {
+    .then((comments) => {
+        comments.forEach((comment) => {
             //Creamos el elemenot li para almacenar cada elemento en el
             let elem = document.createElement('li');
-            elem.appendChild(document.createTextNode(`${user.name} || ${user.phone} || ${user.email} || ${user.company.name} `));
+            elem.appendChild(document.createTextNode(`${comment.body} `));
             //Agregamos el name dentro del li del ul
-            ul.appendChild(elem);
+            ol.appendChild(elem);
         });
         //Al final, agregamos el ul dentro del div obtenido
-        HTMLResponse.appendChild(ul)
+        HTMLResponse.appendChild(ol)
     })
     .catch((error) => {
         console.error('Error en la solicitud');

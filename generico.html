@@ -3,6 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
     <link rel="stylesheet" href="index.css">
     <title>API GENERICA</title>
 </head>
@@ -10,7 +27,7 @@
     <h1>SOLICITUDES GET DE UNA API REST</h1>
     <!-- Seccion de usuarios -->
     <div id="app"></div>
-    <!-- Seccion de tabla de usuarios -->
+    <!-- Seccion de comentarios -->
     <div id="apptable"></div>
     <!-- Seccion de publicaciones de usuarios -->
     <div id="appposts"></div>
@@ -19,7 +36,7 @@
     
     <!-- Scripts externos para -->
     <script src="apiusers.js" type="module"></script>
-    <script src="apiusertable.js" type="module"></script>
+    <script src="apicomentarios.js" type="module"></script>
     <script src="apiposts.js" type="module"></script>
     <script src="apiphotos.js" type="module"></script>
 </body>
