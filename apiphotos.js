@@ -1,27 +1,34 @@
-//Definimos la ruta de donde consultaremos los recuros
+// Definimos la ruta de donde consultaremos los recursos
 const API_URL = 'https://jsonplaceholder.typicode.com';
 
-//Obtenemos el elemento de DOM html donde arrojamos la info
-const HTMLResponse = document.querySelector('#app');
+// Obtenemos el elemento de DOM html donde arrojamos la info
+const HTMLResponse = document.querySelector('#appphotos');
 
-//Creamos el elemenot donde arrojarems la info
-const ul = document.createElement('ul');
+// Creamos el elemento div donde arrojaremos la info
+const containerDiv = document.createElement('div');
+containerDiv.style.display = 'flex'
+containerDiv.style.flexWrap = 'wrap'
 
-fetch(`${API_URL}/users`)
+fetch(`${API_URL}/photos`)
     .then(response => response.json())
-    .then((users) => {
-        users.forEach((user) => {
-            //Creamos el elemenot li para almacenar cada elemento en el
-            let elem = document.createElement('li');
-            elem.appendChild(document.createTextNode(`${user.name} || ${user.phone} || ${user.email} || ${user.company.name} `));
-            //Agregamos el name dentro del li del ul
-            ul.appendChild(elem);
+    .then((photos) => {
+        photos.forEach((photo) => {
+            // Creamos el elemento div para almacenar cada imagen
+            let userDiv = document.createElement('div');
+            
+            // Supongamos que cada usuario tiene una URL de imagen en user.image
+            let img = document.createElement('img');
+            img.src = photo.thumbnailUrl; // Aquí debes tener la URL de la imagen
+            img.alt = photo.title;
+
+            // Agregamos la imagen dentro del div del usuario
+            userDiv.appendChild(img);
+            containerDiv.appendChild(userDiv);
         });
-        //Al final, agregamos el ul dentro del div obtenido
-        HTMLResponse.appendChild(ul)
+
+        // Al final, agregamos el containerDiv dentro del div obtenido
+        HTMLResponse.appendChild(containerDiv);
     })
     .catch((error) => {
         console.error('Error en la solicitud');
     });
-
-//nombre, telefono y nombre de la compania

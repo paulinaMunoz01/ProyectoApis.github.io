@@ -5,7 +5,7 @@ const API_URL = 'https://jsonplaceholder.typicode.com';
 const HTMLResponse = document.querySelector('#app');
 
 //Creamos el elemenot donde arrojarems la info
-const ul = document.createElement('tr');
+const ul = document.createElement('ul');
 
 fetch(`${API_URL}/users`)
     .then(response => response.json())
